@@ -1,7 +1,3 @@
-![](https://komarev.com/ghpvc/?username=hamitmizrak)
-
-![readme](./picture/readme.jpg)
-
 ## endspoint
 
 ## SpringMVC
@@ -17,7 +13,7 @@ fileWriter
 ```
 
 # 
-* [GitHub](https://github.com/hamitmizrak/TeachCareer_Airties_Blog)
+* [GitHub](https://github.com/BerkinBilgc/MyBlogProject)
 * 
 ### Gereksinimler
 Java 18
