@@ -15,13 +15,10 @@ import java.io.Serializable;
 
 //Entity
 @Entity
-// databasedeki karşılığı table olacak
-// name databasede oluşan tablonun adı
+// databasete table olacak ve ismi Blog olacak.
 @Table(name = "Blog")
 public class BlogEntity extends BaseEntity implements Serializable {
     public static final long serialVersionUID=1L;
-
-    // Burada gelip busines.dto daki Blog dto da neler varsa burada tanıtıyorsun !
 
     //field
     private String dailyHeader;

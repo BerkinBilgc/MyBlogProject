@@ -22,14 +22,32 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 abstract public class BaseEntity {
 
+    // Burayı sanki bir tablo dolduruyormuşsun gibi düşün
+    // database indeki başlıklarını belirlediğin yer.
+
+    // private Long id;
+    // private Date systemCreatedDate;
+    // private String createdBy;
+    // private Date createdDate;
+    // private String lastModifiedBy;
+    // private Date lastModifiedDate;
+
+    // primary key
+    // id ler uniqe olmalı 1,2,3,4 ... id ler farklı bu yüzden @GeneratedValue kullandık.
+    // @GeneratedValue(strategy = GenerationType.IDENTITY) buda ; id lerim eklenirken 1,2,3,4,5... gibi sıralı artan şekilde
+    // eklemesini sağlıyor
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // name= "system_created_date" vermessen default olarak "systemCreatedDate" yazar databasede
     @Column(name ="system_created_date")
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date systemCreatedDate;
+
+    // image
+
 
 
     //auditing
