@@ -1,6 +1,11 @@
 package com.berknbilgc.ui.mvc.impl;
 
 
+
+
+// MVC kısmı frontend ile ilgili. Chrome da girdiğin yapılar ile ilgili
+// database de işlem yapacaksan bir şey yapmak zorunda değilsin burda anladığım kadarıylaaa!!!!
+
 import com.berknbilgc.business.dto.BlogDto;
 import com.berknbilgc.ui.mvc.IBlogController;
 import lombok.RequiredArgsConstructor;

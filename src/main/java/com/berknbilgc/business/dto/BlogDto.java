@@ -16,6 +16,7 @@ import java.util.Date;
 @Data
 @Builder
 public class BlogDto implements Serializable{
+
     private Long id;
 
     @NotEmpty(message = "{blog.header.validation.constraints.NotNull.message}")
