@@ -18,6 +18,9 @@ import java.util.Date;
 //super class
 @MappedSuperclass
 
+// BaseEntitiy oluşturma amacımız daha çok uğraştığımız dataları sürekli gelip değiştirmemize gerek kalmasın diye
+// daha çok kullanılanlarları buraya ekle
+
 //auditing
 @EntityListeners(AuditingEntityListener.class)
 abstract public class BaseEntity {
@@ -51,9 +54,8 @@ abstract public class BaseEntity {
     @Column(name="image")
     private String image;
     */
-     @Lob // büyük datalar için kullanılır!!
-     private Object image;
-
+    @Lob // büyük datalar için kullanılır!!
+    private Object image;
 
     //auditing
     //kim ekledi
