@@ -48,7 +48,8 @@ abstract public class BaseEntity {
 
     // image
 
-
+    @Column(name="image")
+    private String image;
 
     //auditing
     //kim ekledi

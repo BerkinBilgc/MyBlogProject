@@ -23,6 +23,7 @@ public class BlogEntity extends BaseEntity implements Serializable {
     //field
     private String dailyHeader;
     private String dailyContent;
+    private String image;
 
     //@Column(name = "email",length = 125,nullable = false,unique = true)
     private String email;
