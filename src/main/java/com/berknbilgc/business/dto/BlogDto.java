@@ -35,7 +35,7 @@ public class BlogDto implements Serializable{
     //@Pattern(regexp = "")
     private String password;
 
-    private String image;
+    private Object image;
 
     private Date createdDate;
 }

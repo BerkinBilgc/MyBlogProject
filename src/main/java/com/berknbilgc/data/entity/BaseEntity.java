@@ -47,12 +47,17 @@ abstract public class BaseEntity {
     private Date systemCreatedDate;
 
     // image
-
+    /*
     @Column(name="image")
     private String image;
+    */
+     @Lob // büyük datalar için kullanılır!!
+     private Object image;
+
 
     //auditing
     //kim ekledi
+    @Transient
     @Column(name="created_by")
     @CreatedBy
     private String createdBy;
@@ -62,12 +67,15 @@ abstract public class BaseEntity {
     @CreatedDate
     private Date createdDate;
 
+
     //kim güncelledi
+    // @Transient koyarsan onu serileştirmeye almaz ve görmezsin
     @Column(name="last_modified_by")
     @LastModifiedBy
     private String lastModifiedBy;
 
     //kim ne zaman güncelledi
+    // @Transient koyarsan onu serileştirmeye almaz ve görmezsin
     @Column(name="last_modified_date")
     @LastModifiedDate
     private Date lastModifiedDate;
