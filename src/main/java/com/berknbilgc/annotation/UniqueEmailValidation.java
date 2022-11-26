@@ -1,6 +1,6 @@
 package com.berknbilgc.annotation;
 
-import com.berknbilgc.data.entity.BaseEntity;
+import com.berknbilgc.data.entity.BlogEntity;
 import com.berknbilgc.data.repository.IBlogRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +19,7 @@ public class UniqueEmailValidation implements ConstraintValidator<UserRegisterUn
 
     @Override
     public boolean isValid(String email, ConstraintValidatorContext context) {
-        BaseEntity registerEntity=repository.findByEmail(email);
+        BlogEntity registerEntity=repository.findByEmail(email);
         if(registerEntity!=null)
             return false;
         return true;

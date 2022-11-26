@@ -18,7 +18,6 @@ import java.util.Date;
 public class BlogDto implements Serializable{
 
     private Long id;
-
     @NotEmpty(message = "{blog.header.validation.constraints.NotNull.message}")
     private String blogHeader;
 
@@ -30,12 +29,12 @@ public class BlogDto implements Serializable{
     @UserRegisterUniqueEmail
     private String email;
 
+    private Date createdDate;
+
     //@NotEmpty(message = "{blog.password.validation.constraints.NotNull.message}")
     //@Size(min=7,max = 12,message = "{blog.password.pattern.validation.constraints.NotNull.message}")
     //@Pattern(regexp = "")
     //private String password;
 
     //private Object image;
-
-    private Date createdDate;
 }
