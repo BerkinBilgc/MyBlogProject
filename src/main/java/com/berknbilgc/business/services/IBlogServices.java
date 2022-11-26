@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Map;
 public interface IBlogServices {
 
-    BlogDto entityToDto(BlogEntity registerEntity);
+    BlogDto entityToDto(BlogEntity blogEntity);
 
-    BlogEntity dtoToEntity(BlogDto registerDto);
+    BlogEntity dtoToEntity(BlogDto blogDto);
 
     //CREATE
-    BlogDto createBlog(BlogDto registerDto);
+    BlogDto createBlog(BlogDto blogDto);
 
     //LIST
     List<BlogDto> listBlog();
@@ -24,6 +24,6 @@ public interface IBlogServices {
     Map<String,Boolean> deleteBlog( Long id);
 
     //UPDATE
-    BlogDto updateBlog(Long id, BlogDto registerDto);
+    BlogDto updateBlog(Long id, BlogDto blogDto);
 
 }

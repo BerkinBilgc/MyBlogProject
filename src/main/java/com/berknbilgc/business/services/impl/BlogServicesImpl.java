@@ -1,7 +1,6 @@
 package com.berknbilgc.business.services.impl;
 
 import com.berknbilgc.bean.ModelMapperBean;
-import com.berknbilgc.bean.PasswordEncoderBean;
 import com.berknbilgc.business.dto.BlogDto;
 import com.berknbilgc.business.services.IBlogServices;
 import com.berknbilgc.data.entity.BlogEntity;
@@ -26,11 +25,10 @@ import java.util.Map;
 @Service
 @Transactional
 //asıl iş katmanı olan yer
-public abstract class BlogServicesImpl implements IBlogServices {
+public class BlogServicesImpl implements IBlogServices {
     //injection
     private final IBlogRepository repository;
     private final ModelMapperBean modelMapperBean;
-    private final PasswordEncoderBean passwordEncoderBean;
 
     // Model Mapper
     @Override
@@ -46,17 +44,18 @@ public abstract class BlogServicesImpl implements IBlogServices {
     //CREATE
     @Override
     public BlogDto createBlog(BlogDto blogDto) {
-        BlogEntity registerEntity = dtoToEntity(blogDto);
-        repository.save(registerEntity);
+        // burada eksik bir şey olabilir
+        BlogEntity blogEntity = dtoToEntity(blogDto);
+        repository.save(blogEntity);
         return blogDto;
     }
 
     //LIST
     @Override
     public List<BlogDto> listBlog() {
-        List<BlogEntity> registerEntityList = repository.findAll();
+        List<BlogEntity> blogEntityList = repository.findAll();
         List<BlogDto> dtoList = new ArrayList<>();
-        for (BlogEntity temp : registerEntityList) {
+        for (BlogEntity temp : blogEntityList) {
             BlogDto entityToDto = entityToDto(temp);
             dtoList.add(entityToDto);
         }
@@ -66,16 +65,16 @@ public abstract class BlogServicesImpl implements IBlogServices {
     //FIND
     @Override
     public BlogDto findBlog(Long id) {
-        BlogEntity registerEntity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id + " id bulunamadı"));
-        BlogDto entityToDto = entityToDto(registerEntity);
+        BlogEntity blogEntity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id + " id bulunamadı"));
+        BlogDto entityToDto = entityToDto(blogEntity);
         return entityToDto;
     }
 
     //DELETE
     @Override
     public Map<String, Boolean> deleteBlog(Long id) {
-        BlogEntity registerEntity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id + " id bulunamadı"));
-        repository.delete(registerEntity);
+        BlogEntity blogEntity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id + " id bulunamadı"));
+        repository.delete(blogEntity);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
