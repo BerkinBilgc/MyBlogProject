@@ -89,7 +89,6 @@ public abstract class BlogServicesImpl implements IBlogServices {
         if (blogEntity != null) {
             blogEntity.setBlogHeader(blogDto.getBlogHeader());
             blogEntity.setBlogContent(blogDto.getBlogContent());
-            blogEntity.setEmail(blogDto.getEmail());
             repository.save(blogEntity);
         }
         return blogDto;

@@ -10,18 +10,15 @@ import java.util.Map;
 
 public interface IBlogApi {
     //CREATE
-    ResponseEntity<?> createBlog(BlogDto registerDto);
-
+    ResponseEntity<?> createBlog(BlogDto blogDto);
     //LIST
     ResponseEntity<List<BlogDto>>  listBlog();
 
     //FIND
     ResponseEntity<BlogDto> findBlog(Long id);
 
-
     //UPDATE
-    ResponseEntity<BlogDto>  updateBlog(Long id, BlogDto registerDto);
-
+    ResponseEntity<BlogDto>  updateBlog(Long id, BlogDto blogDto);
     //DELETE
     ResponseEntity <Map<String, Boolean>> deleteBlog( Long id);
 

@@ -64,7 +64,6 @@
         <th class="text-uppercase" th:text="#{blog.id}"></th>
         <th class="text-uppercase" th:text="#{blog.header}"></th>
         <th class="text-uppercase" th:text="#{blog.content}"></th>
-        <th class="text-uppercase" th:text="#{blog.email}"></th>
         <th class="text-uppercase" th:text="#{blog.date}"></th>
         <th class="text-uppercase" th:text="#{blog.update}"></th>
         <th class="text-uppercase" th:text="#{blog.show}"></th>
@@ -76,7 +75,6 @@
         <td th:text="${blog.id}"></td>
         <td th:text="${blog.blogHeader}"></td>
         <td th:text="${blog.blogContent}"></td>
-        <td th:text="${blog.email}"></td>
         <td th:text="${blog.createdDate}"></td>
         <td><a class="btn btn-primary" th:href="@{/blog/update/{id}(id=${blog.id})}"> <i
                 class="fa-solid fa-wrench"></i> </a></td>
