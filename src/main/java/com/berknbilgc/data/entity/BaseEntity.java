@@ -29,10 +29,13 @@ abstract public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    //auditing
     //kim ne zaman ekledi
     @Column(name="created_date")
     @CreatedDate
     private Date createdDate;
+
 
     // Burayı sanki bir tablo dolduruyormuşsun gibi düşün
     // database indeki başlıklarını belirlediğin yer.
