@@ -3,13 +3,24 @@ package com.berknbilgc.ui.mvc.impl;
 // MVC kısmı frontend ile ilgili. Chrome da girdiğin yapılar ile ilgili
 // database de işlem yapacaksan bir şey yapmak zorunda değilsin burda anladığım kadarıylaaa!!!!
 
+import com.berknbilgc.bean.ModelMapperBean;
 import com.berknbilgc.business.dto.BlogDto;
+import com.berknbilgc.data.entity.BlogEntity;
+import com.berknbilgc.data.repository.IBlogRepository;
+import com.berknbilgc.exception.ResourceNotFoundException;
 import com.berknbilgc.ui.mvc.IBlogController;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+import java.util.UUID;
+
 
 //lombok
 @RequiredArgsConstructor
@@ -18,14 +29,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 //Controller
 @Controller
 //@RequestMapping("/controller")
-public class BlogController {
-
-    /*
+public class BlogController implements IBlogController {
 
     //Inject
     private final IBlogRepository repository;
     private final ModelMapperBean modelMapperBean;
-    private final PasswordEncoderBean passwordEncoderBean;
+
 
     // SPEED DATA
     // http://localhost:3333/speedData
@@ -37,7 +46,6 @@ public class BlogController {
             UUID uuid = UUID.randomUUID();
             BlogEntity blogEntity = BlogEntity.builder()
                     .blogHeader("başlık " + i).blogContent("içerik "+i)
-                    .password("Hm1234"+i)
                     .email(uuid.toString().concat("@gmail.com")).build();
             repository.save(blogEntity);
             counter++;
@@ -56,7 +64,6 @@ public class BlogController {
     }
 
 
-
     // CREATE 2497-2588
     // http://localhost:3333/blog/create
     @Override
@@ -67,7 +74,7 @@ public class BlogController {
     }
 
     //CREATE
-    // http://localhost:1111/blog/create
+    // http://localhost:3333/blog/create
     @Override
     @PostMapping("/blog/create")
     public String validationPostBlog(@Valid @ModelAttribute("key_blog") BlogDto blogDto, BindingResult bindingResult, Model model) {
@@ -81,12 +88,11 @@ public class BlogController {
 
         //Database
         //masking password
-        BlogDto.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(blogDto.getPassword()));
+        //BlogDto.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(blogDto.getPassword()));
 
         //model mapper
         BlogEntity blogEntity = modelMapperBean.modelMapperMethod().map(blogDto, BlogEntity.class);
         //model mapper yerine biz yazarsak
-        //BlogEntity blogEntity=new BlogEntity();
         //BlogEntity.setId(blogDto.getId());
         //BlogEntity.setName(blogDto.getName());
         //BlogEntity.setSurname(blogDto.getSurname());
@@ -174,7 +180,7 @@ public class BlogController {
             log.error("HATA: " + bindingResult);
             return "blog_update";
         }
-        BlogEntity blogEntity = modelMapperBean.modelMapperMethod().map(blogDto, blogEntity.class);
+        BlogEntity blogEntity = modelMapperBean.modelMapperMethod().map(blogDto, BlogEntity.class);
         try {
             if (blogEntity != null) {
                 repository.save(blogEntity);
@@ -185,7 +191,5 @@ public class BlogController {
         return "redirect:/blog/list";
     }
 
-
- */
 
 }
