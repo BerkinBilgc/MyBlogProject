@@ -50,6 +50,7 @@ public class BlogController implements IBlogController {
             repository.save(blogEntity);
             counter++;
         }
+
         model.addAttribute("key_dataset", counter + " tane blog Entity oluşturuldu");
         return "redirect:/blog/list";
     }
