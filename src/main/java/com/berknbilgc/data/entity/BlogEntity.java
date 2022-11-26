@@ -21,12 +21,12 @@ public class BlogEntity extends BaseEntity implements Serializable {
     public static final long serialVersionUID=1L;
 
     //field
-    private String dailyHeader;
-    private String dailyContent;
+    private String blogHeader;
+    private String blogContent;
 
-    //@Column(name = "email",length = 125,nullable = false,unique = true)
+    @Column(name = "email",length = 125,nullable = false,unique = true)
     private String email;
-    private String password;
+    //private String password;
 
 
     //javada olsun ancak database bu attribute eklemesin

@@ -1,8 +1,5 @@
 package com.berknbilgc.ui.mvc.impl;
 
-
-
-
 // MVC kısmı frontend ile ilgili. Chrome da girdiğin yapılar ile ilgili
 // database de işlem yapacaksan bir şey yapmak zorunda değilsin burda anladığım kadarıylaaa!!!!
 
@@ -26,7 +23,7 @@ public class BlogController {
     /*
 
     //Inject
-    private final IDailyRepository repository;
+    private final IBlogRepository repository;
     private final ModelMapperBean modelMapperBean;
     private final PasswordEncoderBean passwordEncoderBean;
 
@@ -38,15 +35,15 @@ public class BlogController {
         int counter = 0;
         for (int i = 1; i <= 5; i++) {
             UUID uuid = UUID.randomUUID();
-            DailyEntity registerEntity = DailyEntity.builder()
-                    .dailyHeader("başlık " + i).dailyContent("içerik "+i)
+            BlogEntity blogEntity = BlogEntity.builder()
+                    .blogHeader("başlık " + i).blogContent("içerik "+i)
                     .password("Hm1234"+i)
                     .email(uuid.toString().concat("@gmail.com")).build();
-            repository.save(registerEntity);
+            repository.save(blogEntity);
             counter++;
         }
-        model.addAttribute("key_dataset", counter + " tane daily Entity oluşturuldu");
-        return "redirect:/daily/list";
+        model.addAttribute("key_dataset", counter + " tane blog Entity oluşturuldu");
+        return "redirect:/blog/list";
     }
 
     // SPEED DELETE
@@ -55,49 +52,49 @@ public class BlogController {
     @GetMapping("/speedDelete")
     public String deleteSpeedData(Model model) {
         repository.deleteAll();
-        return "redirect:/daily/list";
+        return "redirect:/blog/list";
     }
 
 
 
     // CREATE 2497-2588
-    // http://localhost:3333/daily/create
+    // http://localhost:3333/blog/create
     @Override
-    @GetMapping("/daily/create")
-    public String validationGetDaily(Model model) {
-        model.addAttribute("key_daily", new DailyDto());
-        return "daily_create";
+    @GetMapping("/blog/create")
+    public String validationGetBlog(Model model) {
+        model.addAttribute("key_blog", new BlogDto());
+        return "blog_create";
     }
 
     //CREATE
-    // http://localhost:1111/daily/create
+    // http://localhost:1111/blog/create
     @Override
-    @PostMapping("/daily/create")
-    public String validationPostDaily(@Valid @ModelAttribute("key_daily") DailyDto dailyDto, BindingResult bindingResult, Model model) {
+    @PostMapping("/blog/create")
+    public String validationPostBlog(@Valid @ModelAttribute("key_blog") BlogDto blogDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             log.error("HATA: " + bindingResult);
-            return "daily_create";
+            return "blog_create";
         }
         //eğer valiadtion bir hata yoksa
-        model.addAttribute("daily_success", "Üye Kaydı Başarılı " + dailyDto);
-        log.info("Başarılı " + dailyDto);
+        model.addAttribute("blog_success", "Üye Kaydı Başarılı " + blogDto);
+        log.info("Başarılı " + blogDto);
 
         //Database
         //masking password
-        dailyDto.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(dailyDto.getPassword()));
+        BlogDto.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(blogDto.getPassword()));
 
         //model mapper
-        DailyEntity registerEntity = modelMapperBean.modelMapperMethod().map(dailyDto, DailyEntity.class);
+        BlogEntity blogEntity = modelMapperBean.modelMapperMethod().map(blogDto, BlogEntity.class);
         //model mapper yerine biz yazarsak
-        //RegisterEntity registerEntity=new RegisterEntity();
-        //registerEntity.setId(registerDto.getId());
-        //registerEntity.setName(registerDto.getName());
-        //registerEntity.setSurname(registerDto.getSurname());
-        //registerEntity.setEmail(registerDto.getEmail());
-        //registerEntity.setPassword(registerDto.getPassword());
+        //BlogEntity blogEntity=new BlogEntity();
+        //BlogEntity.setId(blogDto.getId());
+        //BlogEntity.setName(blogDto.getName());
+        //BlogEntity.setSurname(blogDto.getSurname());
+        //BlogEntity.setEmail(blogDto.getEmail());
+        //BlogEntity.setPassword(blogDto.getPassword());
         try {
-            if (registerEntity != null) {
-                repository.save(registerEntity);
+            if (blogEntity != null) {
+                repository.save(blogEntity);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,26 +105,26 @@ public class BlogController {
 
 
     // LIST
-    // http://localhost:3333/daily/list
+    // http://localhost:3333/blog/list
     @Override
-    @GetMapping("/daily/list")
-    public String dailyList(Model model) {
-        List<DailyEntity> list = repository.findAll();
-        model.addAttribute("key_daily", list);
+    @GetMapping("/blog/list")
+    public String blogList(Model model) {
+        List<BlogEntity> list = repository.findAll();
+        model.addAttribute("key_blog", list);
         list.forEach((temp) -> {
             System.out.println(temp);
         });
-        return "daily_list";
+        return "blog_list";
     }
 
     // FIND
-    // http://localhost:3333/daily/find
-    // http://localhost:3333/daily/find/1
+    // http://localhost:3333/blog/find
+    // http://localhost:3333/blog/find/1
     @Override
-    @GetMapping( "/daily/find/{id}")
-    public String dailyFindById(@PathVariable(name = "id") Long id, Model model) {
+    @GetMapping( "/blog/find/{id}")
+    public String blogFindById(@PathVariable(name = "id") Long id, Model model) {
         //1.YOL
-        //Optional<RegisterEntity> findData = repository.findById(id);
+        //Optional<BlogEntity> findData = repository.findById(id);
         //if (findData.isPresent()) {
         //    return "Data: " + findData.get();
         //} else {
@@ -135,57 +132,57 @@ public class BlogController {
         //}
 
         //2.YOL
-        DailyEntity registerEntity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id + " nolu kayıt yoktur"));
-        model.addAttribute("daily_find", registerEntity);
-        return "daily_detail_page";
+        BlogEntity blogEntity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id + " nolu kayıt yoktur"));
+        model.addAttribute("blog_find", blogEntity);
+        return "blog_detail_page";
     }
 
     // DELETE
-    // http://localhost:3333/daily/delete
-    // http://localhost:3333/daily/delete/1
+    // http://localhost:3333/blog/delete
+    // http://localhost:3333/blog/delete/1
     @Override
-    @GetMapping({"/daily/delete", "/daily/delete/{id}"})
-    public String dailyDeleteById(@PathVariable(name = "id", required = false) Long id, Model model) {
-        DailyEntity registerEntity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id + " nolu kayıt yoktur"));
-        if (registerEntity != null) {
+    @GetMapping({"/blog/delete", "/blog/delete/{id}"})
+    public String blogDeleteById(@PathVariable(name = "id", required = false) Long id, Model model) {
+        BlogEntity blogEntity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id + " nolu kayıt yoktur"));
+        if (blogEntity != null) {
             repository.deleteById(id);
-            model.addAttribute("key_delete", registerEntity + " silindi");
+            model.addAttribute("key_delete", blogEntity + " silindi");
         } else
             model.addAttribute("key_delete", id + " numaralı veri yoktur");
-        return "redirect:/daily/list";
+        return "redirect:/blog/list";
     }
 
     //UPDATE
-    // http://localhost:3333/update/daily
+    // http://localhost:3333/update/blog
     @Override
-    @GetMapping("/daily/update/{id}")
-    public String updateGetDaily(@PathVariable(name = "id") Long id, Model model) {
-        DailyEntity registerEntityFind = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id + " nolu kayıt yoktur"));
-        if (registerEntityFind != null) {
-            model.addAttribute("key_update", registerEntityFind);
+    @GetMapping("/blog/update/{id}")
+    public String updateGetBlog(@PathVariable(name = "id") Long id, Model model) {
+        BlogEntity blogEntityFind = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id + " nolu kayıt yoktur"));
+        if (blogEntityFind != null) {
+            model.addAttribute("key_update", blogEntityFind);
         } else
             model.addAttribute("key_update", id + " numaralı veri yoktur");
-        return "daily_update";
+        return "blog_update";
     }
 
     //UPDATE
-    // http://localhost:3333/update/daily
+    // http://localhost:3333/update/blog
     @Override
-    @PostMapping("/daily/update/{id}")
-    public String updatePostDaily(@PathVariable(name = "id") Long id, @Valid @ModelAttribute("key_update") DailyDto dailyDto, BindingResult bindingResult, Model model) {
+    @PostMapping("/blog/update/{id}")
+    public String updatePostBlog(@PathVariable(name = "id") Long id, @Valid @ModelAttribute("key_update") BlogDto blogDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             log.error("HATA: " + bindingResult);
-            return "daily_update";
+            return "blog_update";
         }
-        DailyEntity registerEntity = modelMapperBean.modelMapperMethod().map(dailyDto, DailyEntity.class);
+        BlogEntity blogEntity = modelMapperBean.modelMapperMethod().map(blogDto, blogEntity.class);
         try {
-            if (registerEntity != null) {
-                repository.save(registerEntity);
+            if (blogEntity != null) {
+                repository.save(blogEntity);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/daily/list";
+        return "redirect:/blog/list";
     }
 
 

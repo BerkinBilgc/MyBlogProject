@@ -25,6 +25,15 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 abstract public class BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    //kim ne zaman ekledi
+    @Column(name="created_date")
+    @CreatedDate
+    private Date createdDate;
+
     // Burayı sanki bir tablo dolduruyormuşsun gibi düşün
     // database indeki başlıklarını belirlediğin yer.
 
@@ -39,36 +48,28 @@ abstract public class BaseEntity {
     // id ler uniqe olmalı 1,2,3,4 ... id ler farklı bu yüzden @GeneratedValue kullandık.
     // @GeneratedValue(strategy = GenerationType.IDENTITY) buda ; id lerim eklenirken 1,2,3,4,5... gibi sıralı artan şekilde
     // eklemesini sağlıyor
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    // name= "system_created_date" vermessen default olarak "systemCreatedDate" yazar databasede
+
+    //auditing
+    //kim ekledi
+    //@Transient
+    //@Column(name="created_by")
+    //@CreatedBy
+    //private String createdBy;
+
+/*
+// name= "system_created_date" vermessen default olarak "systemCreatedDate" yazar databasede
     @Column(name ="system_created_date")
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date systemCreatedDate;
 
     // image
-    /*
     @Column(name="image")
     private String image;
-    */
+
     @Lob // büyük datalar için kullanılır!!
     private Object image;
-
-    //auditing
-    //kim ekledi
-    @Transient
-    @Column(name="created_by")
-    @CreatedBy
-    private String createdBy;
-
-    //kim ne zaman ekledi
-    @Column(name="created_date")
-    @CreatedDate
-    private Date createdDate;
-
 
     //kim güncelledi
     // @Transient koyarsan onu serileştirmeye almaz ve görmezsin
@@ -81,4 +82,5 @@ abstract public class BaseEntity {
     @Column(name="last_modified_date")
     @LastModifiedDate
     private Date lastModifiedDate;
+    */
 }
