@@ -25,7 +25,7 @@ public class BlogEntity extends BaseEntity implements Serializable {
     private String blogContent;
 
    //@Column(name = "email",length = 125,nullable = false,unique = true)
-    private String email;
+    //private String email;
     //private String password;
 
 

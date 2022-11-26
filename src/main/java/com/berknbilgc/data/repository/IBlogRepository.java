@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IBlogRepository extends JpaRepository<BlogEntity,Long>{
     //Kendi Sorgumuzu yazdık
-    BlogEntity findByEmail(String email);
+    //BlogEntity findByEmail(String email);
     //BlogEntity findById(String id);
 
 }

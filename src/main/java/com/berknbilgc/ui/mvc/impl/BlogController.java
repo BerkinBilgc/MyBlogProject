@@ -46,7 +46,7 @@ public class BlogController implements IBlogController {
             UUID uuid = UUID.randomUUID();
             BlogEntity blogEntity = BlogEntity.builder()
                     .blogHeader("başlık " + i).blogContent("içerik "+i)
-                    .email(uuid.toString().concat("@gmail.com")).build();
+                    .build();
             repository.save(blogEntity);
             counter++;
         }
