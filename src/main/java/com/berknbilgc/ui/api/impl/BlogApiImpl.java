@@ -18,14 +18,14 @@ import java.util.Map;
 @RequiredArgsConstructor
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v3")
 @CrossOrigin
-public abstract class BlogApiImpl implements IBlogApi {
+public class BlogApiImpl implements IBlogApi {
 
     //injection services
     private final IBlogServices services;
 
-    //http://localhost:3333/api/v1/blog/create
+    //http://localhost:3333/api/v3/blog/create
     //CREATE
     @Override
     @PostMapping("blog/create")
@@ -34,7 +34,7 @@ public abstract class BlogApiImpl implements IBlogApi {
         return ResponseEntity.ok(blogDto);
     }
 
-    //http://localhost:3333/api/v1/blog/list
+    //http://localhost:3333/api/v3/blog/list
     //LIST
     @Override
     @GetMapping("blog/list")
@@ -43,7 +43,7 @@ public abstract class BlogApiImpl implements IBlogApi {
     }
 
 
-    //http://localhost:3333/api/v1/blog/find/1
+    //http://localhost:3333/api/v3/blog/find/1
     //FIND
     @Override
     @GetMapping("blog/find/{id}")
@@ -51,7 +51,7 @@ public abstract class BlogApiImpl implements IBlogApi {
         return ResponseEntity.ok(services.findBlog(id));
     }
 
-    //http://localhost:3333/api/v1/blog/update/1
+    //http://localhost:3333/api/v3/blog/update/1
     //UPDATE
     @Override
     @PutMapping("blog/update/{id}")
@@ -61,7 +61,7 @@ public abstract class BlogApiImpl implements IBlogApi {
     }
 
 
-    //http://localhost:3333/api/v1/blog/delete/1
+    //http://localhost:3333/api/v3/blog/delete/1
     //DELETE
     @Override
     @DeleteMapping("blog/delete/{id}")
