@@ -60,7 +60,6 @@ public class BlogApiImpl implements IBlogApi {
         return ResponseEntity.ok(blogDto);
     }
 
-
     //http://localhost:3333/api/v3/blog/delete/1
     //DELETE
     @Override
