@@ -1,43 +1,6 @@
-
-## endspoint
-//Save
-POST /api/v3/blog/create HTTP/1.1
-Host: localhost:3333
-Content-Type: application/json
-Content-Length: 103
-{
-"id": null,
-"blogHeader":"header",
-"blogContent":"icerik",
-"createdDate": null
-}
-//List
-GET /api/v3/blog/list HTTP/1.1
-Host: localhost:3333
-
-//Find
-GET /api/v3/blog/find/1 HTTP/1.1
-Host: localhost:3333
-
-//Update
-PUT /api/v3/blog/update/1 HTTP/1.1
-Host: localhost:3333
-Content-Type: application/json
-Content-Length: 118
-{
-"id": null,
-"blogHeader":"HeaderUpdated",
-"blogContent":"ContentUpdated",
-"createdDate": null
-}
-
-// Delete
-DELETE /api/v3/blog/delete/1 HTTP/1.1
-Host: localhost:3333
-
 # 
 * [GitHub](https://github.com/BerkinBilgc/MyBlogProject)
-* 
+
 
 ## SpringMVC
 ```shell
