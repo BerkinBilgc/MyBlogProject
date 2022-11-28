@@ -14,12 +14,12 @@ Dto
 
 
 ### Requirements
-Java 18
-intellij idea Ultimate 
-Visual Studio Code
-Node js
-Docker
-Postman
+- Java 18
+- intellij idea Ultimate 
+- Visual Studio Code
+- Node js
+- Docker
+- Postman
 ---
 
 ---
