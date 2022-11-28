@@ -1,64 +1,77 @@
+
 ## endspoint
+//Save
+POST /api/v3/blog/create HTTP/1.1
+Host: localhost:3333
+Content-Type: application/json
+Content-Length: 103
+{
+"id": null,
+"blogHeader":"header",
+"blogContent":"icerik",
+"createdDate": null
+}
+//List
+GET /api/v3/blog/list HTTP/1.1
+Host: localhost:3333
+
+//Find
+GET /api/v3/blog/find/1 HTTP/1.1
+Host: localhost:3333
+
+//Update
+PUT /api/v3/blog/update/1 HTTP/1.1
+Host: localhost:3333
+Content-Type: application/json
+Content-Length: 118
+{
+"id": null,
+"blogHeader":"HeaderUpdated",
+"blogContent":"ContentUpdated",
+"createdDate": null
+}
+
+// Delete
+DELETE /api/v3/blog/delete/1 HTTP/1.1
+Host: localhost:3333
+
+# 
+* [GitHub](https://github.com/BerkinBilgc/MyBlogProject)
+* 
 
 ## SpringMVC
 ```shell
 Validation
-i18n
 Annotation
 Dto
 @Controller
 @GetMapping
 @PostMapping
-fileWriter
 ```
 
-# 
-* [GitHub](https://github.com/BerkinBilgc/MyBlogProject)
-* 
-### Gereksinimler
+
+### Requirements
 Java 18
 intellij idea Ultimate 
 Visual Studio Code
 Node js
+Docker
+Postman
 ---
-
-## Visual Studio codes
-Extensisons
-- Browser preview
-- Auto Close tag
-- tabnine
-- Auto import
-- Auto rename tag
-- Bootstrap 5 Quick Snipperts
-- Bracket Pair Colorizer 2
-- Css Snippet
-- Es7+ React/REdux/React-Native snippets
-- Html Snippets
-- JsQuery Snippets
-- Live Server
-- Material Icon Theme
-- Open-in-Browser
-- Path Intellisense
-- Prettier Code formatter
-- Project Manager
-- Reactjs code Snippets
 
 ---
 
 ## Tecnology
-##FrontEnd
+
+## FrontEnd
 - Html5
-- Css3
 - responsive design
 - Js
 - jquery
-- Bootstrap
-- react
 ---
 
 ## BackEnd
 * javase
-* jdbc crud native
 * hibernate
 * spring core
 * spring mvc
@@ -75,11 +88,10 @@ Validation
 
 ## Database
 H2 Database
-Mysql
 Postgresql
 
 ---
-## dependency
+## Dependency
 Spring Web
 Spring Data JPA
 Spring Rest
@@ -99,17 +111,17 @@ Spring Boot Actuator
 
 
 
-1.ADIM
+First Step
 npx create-react-app frontend
 cd frontend
 npm start
 code .
 
-2.ADIM
+Second Step
 NOT: node_modules siliyoruz bunu sonrasında 
 npm i
 
-3.ADIM
+Trhird Step
 terminal: package.json seviyesinde olacak şekilde
 npm install axios
 npm install bootstrap --save
