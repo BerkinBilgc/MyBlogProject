@@ -1,6 +1,9 @@
 # 
 * [GitHub](https://github.com/BerkinBilgc/MyBlogProject)
 
+#
+Hello here I am sharing a simple microservice project. MyBlogProject, Daily and RegisterLogin projects are microservice projects. Daily and Blog projects work through the RegisterLogin Project. So RegisterLogin is the main project.
+
 
 ## SpringMVC
 ```shell
